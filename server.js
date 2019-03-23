@@ -3,9 +3,11 @@ const router = express.Router();
 const app = express();
 const port = 3000;
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
+app.use(cors());
 app.use(require('body-parser').json());
 
 const routesAuth = require('./routes/auth.route'); 
