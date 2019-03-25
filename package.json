@@ -1,11 +1,11 @@
 {
   "name": "Smart-Interceptor-Backend",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "nodemon": "nodemon server.js"
+    "start": "node index.js",
+    "nodemon": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",

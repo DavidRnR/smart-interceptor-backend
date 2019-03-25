@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 5000;
 const mongoose = require('mongoose');
 const cors = require('cors');
 
@@ -22,7 +22,7 @@ routesOS(app);
 
 mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-cubod.mongodb.net/${process.env.MONGO_DB}?retryWrites=true`, { useNewUrlParser: true })
 .then( () => {
-    app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+    app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
 }).catch( err => {
     console.log(err)
 });
