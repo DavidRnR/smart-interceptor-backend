@@ -4,6 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const mongoose = require('mongoose');
 const cors = require('cors');
+const config = require('./config');
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
@@ -20,7 +21,7 @@ routesPL(app);
 const routesOS = require('./routes/os.route'); 
 routesOS(app); 
 
-mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-cubod.mongodb.net/${process.env.MONGO_DB}?retryWrites=true`, { useNewUrlParser: true })
+mongoose.connect(`mongodb+srv://${config.env.MONGO_USER}:${config.env.MONGO_PASSWORD}@cluster0-cubod.mongodb.net/${config.env.MONGO_DB}?retryWrites=true`, { useNewUrlParser: true })
 .then( () => {
     app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
 }).catch( err => {
