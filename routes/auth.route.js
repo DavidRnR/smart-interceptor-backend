@@ -9,5 +9,5 @@ module.exports = (app) => {
     .post(Auth.singIn);
 
     app.route('/api/auth/token')
-    .get(Auth.getToken);
+    .post(Auth.getToken);
 };
