@@ -62,7 +62,7 @@ exports.singUp = (req, res) => {
 exports.getToken = (req, res) => {
     const postData = req.body
 
-    if((postData.refreshToken) && (postData.refreshToken in tokenList)) {
+    if((postData.refresh_token) && (postData.refresh_token in tokenList)) {
         const token = jwt.sign({email: postData.email}, config.secret, {
             expiresIn: 900
         });
@@ -73,7 +73,7 @@ exports.getToken = (req, res) => {
             'access_token': token,
             'refresh_token': refreshToken,
         }
-        tokenList[postData.refreshToken].token = token
+        tokenList[postData.refresh_token].token = token
         res.status(200).json(response);        
     } else {
         res.status(404).send('Invalid request')
