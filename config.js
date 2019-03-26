@@ -1,4 +1,4 @@
-{
+module.exports = {
     "secret": "testNodeJS",
     "refreshTokenSecret": "refreshNodeJS",
     "port": 3000,
@@ -9,4 +9,4 @@
         "MONGO_PASSWORD": "Ijr9sE8sXQ2JcUHr",
         "MONGO_DB": "tech"
     }
-}
+};
