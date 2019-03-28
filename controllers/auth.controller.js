@@ -55,7 +55,7 @@ exports.getToken = (req, res) => {
 
         jwt.verify(postData.refresh_token, config.refreshTokenSecret, (err, decoded) => {
             if (err) {
-                return res.status(401).json({
+                return res.status(403).json({
                     'error': true,
                     'message': 'Unauthorized access.'
                 });
