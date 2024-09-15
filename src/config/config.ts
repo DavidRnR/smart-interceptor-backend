@@ -17,4 +17,5 @@ export const DB_CONFIG = {
   HOST: process.env.DB_HOST || 'localhost',
   USERNAME: process.env.DB_USERNAME || 'test',
   PASSWORD: process.env.DB_PASSWORD || 'testpassword',
+  PORT: Number(process.env.DB_PORT) || 3306,
 };
