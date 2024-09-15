@@ -1,5 +1,7 @@
 import dotenv from 'dotenv';
-dotenv.config();
+dotenv.config({
+  path: ['.env.local', '.env'],
+});
 
 export const JWT_CONFIG = {
   JWT_ACCESS_TOKEN_SECRET: process.env.JWT_ACCESS_TOKEN_SECRET || 'secret',
@@ -9,7 +11,7 @@ export const JWT_CONFIG = {
 };
 
 export const SERVER_CONFIG = {
-  PORT: Number(process.env.PORT) || 5000,
+  PORT: Number(process.env.APP_PORT) || 5000,
 };
 
 export const DB_CONFIG = {
