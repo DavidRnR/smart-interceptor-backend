@@ -1,14 +1,14 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/db';
 
-class OS extends Model {
+class ProgrammingLang extends Model {
   public id!: number;
   public name!: string;
   public createdAt!: Date;
   public updatedAt!: Date;
 }
 
-OS.init(
+ProgrammingLang.init(
   {
     name: {
       type: DataTypes.STRING,
@@ -17,8 +17,8 @@ OS.init(
   },
   {
     sequelize,
-    tableName: 'os',
+    tableName: 'programminglang',
   },
 );
 
-export default OS;
+export default ProgrammingLang;

@@ -3,9 +3,11 @@
   "version": "2.0.0",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "tsnd --respawn --clear src/index.ts",
+    "setup-db": "ts-node db/setupDB.ts",
+    "dev": "ts-node-dev src/index.ts --watch",
     "build": "rimraf ./dist && tsc",
-    "start": "npm run build && node dist/index.js"
+    "start": "npm run build && node dist/index.js",
+    "lint": "eslint src/**/*.ts --fix"
   },
   "author": "David Martin <carlosdavidmartin@gmail.com>",
   "license": "ISC",
@@ -14,21 +16,30 @@
     "bcryptjs": "2.4.3",
     "body-parser": "1.20.3",
     "cors": "2.8.5",
+    "dotenv": "16.4.5",
     "express": "4.21.0",
     "jsonwebtoken": "9.0.2",
-    "mongoose": "8.6.2"
+    "mysql2": "3.11.2",
+    "sequelize": "6.37.3"
   },
-  "type": "module",
   "engines": {
     "node": "20.x"
   },
   "devDependencies": {
-    "@types/bcryptjs": "^2.4.6",
-    "@types/cors": "^2.8.17",
-    "@types/express": "^4.17.21",
-    "@types/jsonwebtoken": "^9.0.6",
-    "@types/node": "^22.5.5",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "^5.6.2"
+    "@types/bcryptjs": "2.4.6",
+    "@types/cors": "2.8.17",
+    "@types/express": "4.17.21",
+    "@types/jsonwebtoken": "9.0.6",
+    "@types/node": "22.5.5",
+    "@typescript-eslint/eslint-plugin": "8.5.0",
+    "@typescript-eslint/parser": "8.5.0",
+    "eslint": "8.57.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-import": "2.30.0",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "5.2.1",
+    "prettier": "3.3.3",
+    "ts-node-dev": "2.0.0",
+    "typescript": "^5.5.4"
   }
 }
