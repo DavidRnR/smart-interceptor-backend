@@ -6,7 +6,7 @@
     "setup-db": "ts-node db/setupDB.ts",
     "dev": "ts-node-dev src/index.ts --watch",
     "build": "rimraf ./dist && tsc",
-    "start": "npm run build && node dist/index.js",
+    "start": "npm run setup-db && run build && node dist/index.js",
     "lint": "eslint src/**/*.ts --fix"
   },
   "author": "David Martin <carlosdavidmartin@gmail.com>",
