@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config({
   path: ['.env.local', '.env'],
 });
-
+console.log(process.env);
 export const JWT_CONFIG = {
   JWT_ACCESS_TOKEN_SECRET: process.env.JWT_ACCESS_TOKEN_SECRET || 'secret',
   JWT_REFRESH_TOKEN_SECRET: process.env.JWT_REFRESH_TOKEN_SECRET || 'secret',
