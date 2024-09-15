@@ -1,8 +1,8 @@
 # Smart-Interceptor Back-End
 
-## Simple Nodejs + MongoDB backend implementing Json Web Token Auth
+## Simple Nodejs + MySQL backend implementing Json Web Token Auth
 
-## Access Token + Refresh Token 
+## Access Token + Refresh Token
 
 ### Test user: 
 email: test@test.com
