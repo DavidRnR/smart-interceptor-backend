@@ -11,8 +11,10 @@ export const JWT_CONFIG = {
 };
 
 export const SERVER_CONFIG = {
-  PORT: Number(process.env.APP_PORT) || 5000,
+  PORT: Number(process.env.PORT) || 5000,
 };
+
+console.log(SERVER_CONFIG);
 
 export const DB_CONFIG = {
   NAME: process.env.DB_NAME || 'dbname',
