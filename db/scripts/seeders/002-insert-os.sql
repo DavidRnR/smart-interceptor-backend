@@ -1,2 +1,2 @@
-INSERT INTO OS (name)
+INSERT INTO os (name)
 VALUES ('Windows'), ('Linux'), ('MacOS'), ('Android'), ('iOS');
