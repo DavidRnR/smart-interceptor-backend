@@ -1,4 +1,4 @@
-import UserDTO from '../dto/userDTO';
+import UserDTO from '../dto/UserDTO';
 import User from '../models/User';
 import userRepository from '../repositories/userRepository';
 
