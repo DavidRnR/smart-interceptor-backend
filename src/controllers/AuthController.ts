@@ -1,16 +1,14 @@
 import jwt, { VerifyErrors } from 'jsonwebtoken';
-import User from '../models/User';
 import { JWT_CONFIG } from '../config/config';
 import { Request, Response } from 'express';
+import { RefreshRequestDTO, SignInRequestDTO, SignInResponseDTO, SignUpRequestDTO, SignUpResponseDTO } from '../dto/AuthDTO';
+import { ApiResponseErrorDTO } from '../dto/ApiDTO';
+import userService from '../services/userService';
 
-export const singIn = async (req: Request, res: Response) => {
+export const singIn = async (req: Request<object, object, SignInRequestDTO>, res: Response<SignInResponseDTO | ApiResponseErrorDTO>) => {
   const { email, password } = req.body;
   try {
-    const user = await User.findOne({
-      where: {
-        email,
-      },
-    });
+    const user = await userService.getUserByEmail(email);
     if (!user) {
       res.status(400).json({
         message: 'Invalid Password/Email',
@@ -34,22 +32,17 @@ export const singIn = async (req: Request, res: Response) => {
   }
 };
 
-export const singUp = async (req: Request, res: Response) => {
+export const singUp = async (req: Request<object, object, SignUpRequestDTO>, res: Response<SignUpResponseDTO | ApiResponseErrorDTO>) => {
   const { email, password } = req.body;
   try {
-    const user = await User.findOne({
-      where: {
-        email,
-      },
-    });
+    const user = await userService.getUserByEmail(email);
     if (!user) {
-      const newUser = await User.create({
+      const newUser = await userService.createUser({
         email,
         password,
       });
       const response = getTokenResponse(newUser.email);
       res.status(200).json(response);
-      return;
     } else {
       res.status(400).json({
         message: 'User already exist',
@@ -63,14 +56,13 @@ export const singUp = async (req: Request, res: Response) => {
   }
 };
 
-export const refresh = (req: Request, res: Response) => {
+export const refresh = (req: Request<object, object, RefreshRequestDTO>, res: Response<SignInResponseDTO | ApiResponseErrorDTO>) => {
   const postData = req.body;
 
   if (postData.refreshToken) {
     jwt.verify(postData.refreshToken, JWT_CONFIG.JWT_REFRESH_TOKEN_SECRET, (err: VerifyErrors | null) => {
       if (err) {
         return res.status(403).json({
-          error: true,
           message: 'Unauthorized access.',
         });
       }
@@ -80,7 +72,7 @@ export const refresh = (req: Request, res: Response) => {
       res.status(200).json(response);
     });
   } else {
-    res.status(404).send('Invalid request');
+    res.status(404).send({ message: 'Invalid request' });
   }
 };
 

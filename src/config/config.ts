@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
-dotenv.config({
-  path: ['.env.local', '.env'],
-});
+// Load .env.local for development
+const envFile = process.env.NODE_ENV === 'development' ? '.env.local' : '.env';
+dotenv.config({ path: envFile });
 
 export const JWT_CONFIG = {
   JWT_ACCESS_TOKEN_SECRET: process.env.JWT_ACCESS_TOKEN_SECRET || 'testNodeJS',

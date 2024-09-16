@@ -1,9 +1,11 @@
 import { Request, Response } from 'express';
-import ProgrammingLang from '../models/ProgrammingLang';
+import plService from '../services/plService';
+import { ProgrammingLangCreateRequestDTO, ProgrammingLangListResponseDTO } from '../dto/ProgrammingLangDTO';
+import { ApiResponseErrorDTO } from '../dto/ApiDTO';
 
-export const listAllProgrammingLang = async (_: Request, res: Response): Promise<void> => {
+export const listAllProgrammingLang = async (_: Request, res: Response<ProgrammingLangListResponseDTO | ApiResponseErrorDTO>): Promise<void> => {
   try {
-    const plList = await ProgrammingLang.findAll();
+    const plList = await plService.getAll();
     res.status(200).json(plList);
   } catch (error) {
     console.error('Error fetching PL list:', error);
@@ -11,11 +13,11 @@ export const listAllProgrammingLang = async (_: Request, res: Response): Promise
   }
 };
 
-export const createProgrammingLang = async (req: Request, res: Response): Promise<void> => {
+export const createProgrammingLang = async (req: Request<object, object, ProgrammingLangCreateRequestDTO>, res: Response): Promise<void> => {
   const { name } = req.body;
 
   try {
-    const newPL = await ProgrammingLang.create({ name });
+    const newPL = await plService.create({ name });
     res.status(201).json(newPL);
   } catch (error) {
     console.error('Error creating PL:', error);
@@ -27,9 +29,9 @@ export const deleteProgrammingLang = async (req: Request, res: Response): Promis
   const { id } = req.params;
 
   try {
-    const pl = await ProgrammingLang.findByPk(id);
+    const pl = await plService.findById(Number(id));
     if (pl) {
-      await pl.destroy();
+      await plService.delete(Number(id));
       res.status(200).json({ message: 'Programming Lang deleted successfully' });
     } else {
       res.status(404).json({ message: 'Programming Lang not found' });
