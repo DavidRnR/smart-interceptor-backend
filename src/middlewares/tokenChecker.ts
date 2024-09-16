@@ -11,7 +11,6 @@ export default (req: RequestDecoded, res: Response, next: NextFunction) => {
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return res.status(403).send({
-      error: true,
       message: 'No token provided or incorrect token format.',
     });
   }
@@ -22,7 +21,6 @@ export default (req: RequestDecoded, res: Response, next: NextFunction) => {
     jwt.verify(token, JWT_CONFIG.JWT_ACCESS_TOKEN_SECRET, (err, decoded) => {
       if (err) {
         return res.status(401).json({
-          error: true,
           message: 'Unauthorized access.',
         });
       }
@@ -31,7 +29,6 @@ export default (req: RequestDecoded, res: Response, next: NextFunction) => {
     });
   } else {
     return res.status(403).send({
-      error: true,
       message: 'No token provided.',
     });
   }

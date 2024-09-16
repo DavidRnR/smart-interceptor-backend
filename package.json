@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "scripts": {
     "setup-db": "ts-node db/setupDB.ts",
-    "dev": "ts-node-dev -r dotenv/config src/index.ts --watch",
+    "dev": "cross-env NODE_ENV=development ts-node-dev -r dotenv/config src/index.ts --watch",
     "build": "rimraf ./dist && tsc",
     "start": "npm install && npm run build && node dist/index.js",
     "lint": "eslint src/**/*.ts --fix"
@@ -16,6 +16,7 @@
     "bcryptjs": "2.4.3",
     "body-parser": "1.20.3",
     "cors": "2.8.5",
+    "cross-env": "^7.0.3",
     "dotenv": "16.4.5",
     "express": "4.21.0",
     "jsonwebtoken": "9.0.2",
