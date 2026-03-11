@@ -20,7 +20,7 @@
     "express": "4.21.0",
     "jsonwebtoken": "9.0.2",
     "mysql2": "3.11.2",
-    "sequelize": "6.37.3"
+    "sequelize": "6.37.8"
   },
   "engines": {
     "node": "20.x"
